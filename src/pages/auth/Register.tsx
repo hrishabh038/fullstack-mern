@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Box1 from "../../containers/Box1";
 import InputArea from "../../components/InputArea";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {}
 
 const Register = (props: Props) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -16,10 +17,10 @@ const Register = (props: Props) => {
     phone_number: "",
   });
   function handleClick() {
-    console.log(data);
+    navigate("/auth/login");
   }
   return (
-    <div className="w-full h-full  flex items-start sm:items-center justify-center p-4">
+    <div className="w-full h-full  flex items-start sm:items-center justify-center p-4 overflow-auto">
       <Box1 className="p-6 w-[350px] sm:w-[600px] flex flex-col gap-4">
         <div className="flex flex-col gap-1 mb-2 text-center">
           <p className="text-2xl font-bold">Creat your account</p>
@@ -67,7 +68,9 @@ const Register = (props: Props) => {
             label="Confirm Password"
             placeholder="*************"
             value={data.confirm_password}
-            onChange={(e) => setData({ ...data, confirm_password: e.target.value })}
+            onChange={(e) =>
+              setData({ ...data, confirm_password: e.target.value })
+            }
             type="password"
           />
         </div>
